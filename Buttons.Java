@@ -10,9 +10,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -52,9 +49,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonClick(View v) {
-        TextView tv = (TextView) findViewById(R.id.textView);
         Button btn = (Button) findViewById(v.getId());
-        tv.append(btn.getText().toString());
+        //tv.append(btn.getText().toString());
         btn.setEnabled(false);
         btn.setBackgroundColor(Color.TRANSPARENT);
 
