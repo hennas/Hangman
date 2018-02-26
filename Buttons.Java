@@ -26,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout layout3 = (LinearLayout) findViewById(R.id.button_layout3);
         LinearLayout layout4 = (LinearLayout) findViewById(R.id.button_layout4);
         LinearLayout layout5 = (LinearLayout) findViewById(R.id.button_layout5);
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int screenWidth = metrics.widthPixels / 9;
         for (int i = 0; i < 29; i++) {
             Button btn = new Button(this);
-            btn.setLayoutParams(new LinearLayout.LayoutParams(80, 80));
+            btn.setLayoutParams(new LinearLayout.LayoutParams(screenWidth, LinearLayout.LayoutParams.WRAP_CONTENT));
             btn.setId(i);
             btn.getBackground().setAlpha(20);
             btn.setText(letters[i]);
