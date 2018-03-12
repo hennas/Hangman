@@ -37,7 +37,7 @@ public class Guesses {
     }
 
     public boolean gameEnded() {
-        if (numOfGuesses > 0) {
+        if (numOfGuesses < 1) {
             return true;
         }
         return false;
