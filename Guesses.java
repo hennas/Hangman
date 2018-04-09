@@ -1,6 +1,7 @@
 package com.example.myfirstapp;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +27,24 @@ public class Guesses {
         return revealedWord;
     }
 
-    public void checkGuessed(String guessed) {
-        numOfGuesses--;
+    public boolean checkGuessed(String guessed) {
+        boolean found = false;
         guessedLetters.add(guessed);
         for (int i = 0; i < word.size(); i++) {
             if (word.get(i).equals(guessed)) {
                 revealedWord[i] = guessed;
+                found = true;
             }
         }
+        return found;
+    }
+
+    public int getNumOfGuesses(){
+        return numOfGuesses;
+    }
+
+    public void takeAwayGuess() {
+        numOfGuesses--;
     }
 
     public boolean gameEnded() {

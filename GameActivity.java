@@ -33,12 +33,14 @@ public class GameActivity extends AppCompatActivity {
 
         createButtons();
         FileReader fileReader = new FileReader(this);
-        List<String> words = fileReader.readFile("sanalista.txt");
+        List<String> words = fileReader.readFile("sanoja.txt");
+        Log.d("lista", String.valueOf(words.isEmpty()));
         dictionary = new Dictionary(wordlenght);
         dictionary.createList(words);
         dictionary.chooseWord();
         String word = dictionary.getWord();
         guesses = new Guesses(word, 8);
+        showGuessNum();
         drawWord();
     }
 
@@ -75,9 +77,15 @@ public class GameActivity extends AppCompatActivity {
 
     public void buttonClick(View v) {
         Button btn = (Button) findViewById(v.getId());
+        TextView tv = (TextView) findViewById(R.id.textview4);
         String guessedLetter = btn.getText().toString();
-        guesses.checkGuessed(guessedLetter);
+        if (!guesses.checkGuessed(guessedLetter)) { guesses.takeAwayGuess(); }
+        if (guesses.gameEnded()) { tv.setText("Hävisit xD!?"); }
+        //if (victory == wordlenght) {
+         //   tv.setText("Voitit :DDDDDddddD");
+        //}
         drawWord();
+        showGuessNum();
         btn.setEnabled(false);
         btn.setBackgroundColor(Color.TRANSPARENT);
 
@@ -93,5 +101,10 @@ public class GameActivity extends AppCompatActivity {
                 tview.append(revealedWord[i] + " ");
             }
         }
+    }
+
+    public void showGuessNum() {
+        TextView tv = (TextView) findViewById(R.id.textview2);
+        tv.setText("Arvausten määrä: " + guesses.getNumOfGuesses());
     }
 }
