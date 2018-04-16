@@ -19,7 +19,13 @@
         <activity
             android:name=".GameActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme"></activity>
-    </application>
+            android:theme="@style/AppTheme">
 
+        </activity>
+        <activity
+            android:name=".Popup"
+            android:theme="@style/Theme.AppCompat.Dialog.NoActionBar">
+        </activity>
+
+    </application>
 </manifest>

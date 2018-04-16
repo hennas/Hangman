@@ -80,10 +80,20 @@ public class GameActivity extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.textview4);
         String guessedLetter = btn.getText().toString();
         if (!guesses.checkGuessed(guessedLetter)) { guesses.takeAwayGuess(); }
-        if (guesses.gameEnded()) { tv.setText("Hävisit xD!?"); }
-        //if (victory == wordlenght) {
-         //   tv.setText("Voitit :DDDDDddddD");
-        //}
+        if (guesses.gameEnded()) {
+            disableButtons(v);
+            Intent popup = new Intent(this, Popup.class);
+            popup.putExtra("Tulos", 1);
+            startActivity(popup);
+            finish();
+        }
+        if (guesses.gameWon()) {
+            disableButtons(v);
+            Intent popup = new Intent(this, Popup.class);
+            popup.putExtra("Tulos", 2);
+            startActivity(popup);
+
+        }
         drawWord();
         showGuessNum();
         btn.setEnabled(false);
@@ -100,6 +110,13 @@ public class GameActivity extends AppCompatActivity {
             } else {
                 tview.append(revealedWord[i] + " ");
             }
+        }
+    }
+
+    public void disableButtons(View v) {
+        for (int i = 0; i < 29; i++) {
+            Button btn = (Button) findViewById(i);
+            btn.setEnabled(false);
         }
     }
 

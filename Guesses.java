@@ -1,9 +1,12 @@
 package com.example.myfirstapp;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.io.Console;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Guesses {
@@ -39,7 +42,7 @@ public class Guesses {
         return found;
     }
 
-    public int getNumOfGuesses(){
+    public int getNumOfGuesses() {
         return numOfGuesses;
     }
 
@@ -47,10 +50,21 @@ public class Guesses {
         numOfGuesses--;
     }
 
+    public boolean gameWon() {
+        if (returnWord().equals(TextUtils.join("", revealedWord))) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean gameEnded() {
         if (numOfGuesses < 1) {
             return true;
         }
         return false;
+    }
+
+    public String returnWord() {
+        return TextUtils.join("", word);
     }
 }
